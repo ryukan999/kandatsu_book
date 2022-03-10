@@ -24,3 +24,4 @@ Things you may want to cover:
 * ...
 # kandatsu_book
 # kandatsu_book
+# kandatsu_book
