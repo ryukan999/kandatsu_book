@@ -1,0 +1,18 @@
+<%= @user.name %>さんより
+下記の書籍の注文依頼が届いています。
+
+注文書籍
+
+<% @books.each do |book| %>
+    ・<%= book.title %>
+<% end %>
+
+
+ISBNコード
+
+<% @books.each do |book| %>
+    <%= book.isbn%>
+<% end %>
+
+
+

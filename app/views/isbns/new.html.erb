@@ -1,0 +1,25 @@
+<div class="header2">
+<%= link_to '書籍一覧', books_path%>
+<%= link_to '登録(手動)', new_book_path %>
+<%= link_to '未購入品一覧', search_status_index_path %>
+<%= link_to '発注済み書籍一覧', now_order_index_path %>
+<%= link_to '検索', searches_path %>
+</div>
+<h1>ISBNコードから書籍データを取得</h1>
+
+<%= form_with url: isbn_path do |form| %>
+  <%= form.label :isbnコード %>
+  <%= form.text_field :isbn %>
+<br>
+  <%= form.label :分類 %>
+  <%= form.select :group_id, Group.all.map { |group| [group.name, group.id] } %>
+<br>
+  <%= form.label :注文状況 %>
+  <%= form.select :status, [["購入済", "購入済"], ["未購入", "未購入"]], include_blank: "選択して下さい" %>
+<br>
+  <%= form.label :コメント %>
+  <%= form.text_area :comment %>
+<br>  
+  <%= form.submit "登録" %>
+  
+<% end %>

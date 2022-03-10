@@ -1,0 +1,67 @@
+<%= form_for(book) do |f| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :表紙イメージ %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :タイトル %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :著者 %>
+    <%= f.text_field :author %>
+  </div>
+
+  <div class="field">
+    <%= f.label :出版社 %>
+    <%= f.text_field :publisher%>
+  </div>
+
+  <div class="field">
+    <%= f.label :発行年 %>
+    <%= f.date_select :published_at, use_month_numbers: true, start_year: 1950, end_year: Time.now.year, date_separator: '/' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :分類 %>
+    <%= f.select :group_id, Group.all.map { |group| [group.name, group.id] } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :概要 %>
+    <%= f.text_area :summary %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ISBN %>
+    <%= f.text_field :isbn %>
+  </div>
+
+  <div class="field">
+    <%= f.label :注文状況 %>
+    <%= f.select :status, [["購入済", "購入済"], ["未購入", "未購入"]], include_blank: "選択して下さい" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :コメント %>
+    <%= f.text_area :comment %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

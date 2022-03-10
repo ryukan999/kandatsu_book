@@ -1,0 +1,77 @@
+<div class="header2">
+<%= link_to '書籍一覧', books_path%>
+<%= link_to '登録(自動)', new_isbn_path %>
+<%= link_to '登録(手動)', new_book_path %>
+<%= link_to '未購入品一覧', search_status_index_path %>
+<%= link_to '発注済み書籍一覧', now_order_index_path %>
+<%= link_to '検索', searches_path %>
+</div>
+
+<h1>詳細</h1>
+
+<p>
+  <strong >表紙イメージ:</strong>
+  <%= image_tag @book.image&.url, :size  => '60x80'%>
+</p>
+
+<p>
+  <strong>タイトル:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong >登録者名:</strong>
+  <%= @book.user.name %>
+</p>
+
+<p>
+  <strong>著者:</strong>
+  <%= @book.author %>
+</p>
+
+<p>
+  <strong >出版社:</strong>
+  <%= @book.publisher %>
+</p>
+
+<p>
+  <strong>発行年:</strong>
+  <%= @book.published_at %>
+</p>
+
+<p>
+  <strong>分類:</strong>
+  <%= @book.group&.name %>
+</p>
+
+<p>
+  <strong>概要:</strong>
+  <%= @book.summary %>
+</p>
+
+<p>
+  <strong>Isbnコード:</strong>
+  <%= @book.isbn %>
+</p>
+
+<p>
+  <strong>注文状況:</strong>
+  <%= @book.status %>
+</p>
+
+<p>
+  <strong>コメント:</strong>
+  <%= @book.comment %>
+</p>
+
+<p>
+  <strong>貸し出し履歴:</strong>
+  <ul>
+  <% @book.rentals.each do |rental|%>
+    <li><%= rental.user.name%>  <<%= rental.created_at.to_s(:datetime_jp) %>〜<%= rental.updated_at.to_s(:datetime_jp) %>></li>
+  <% end %>
+  </ul>
+</p>
+
+<%= link_to '編集', edit_book_path(@book) %>
+<%= link_to '削除', @book, method: :delete, data: { confirm: '本当にこの書籍情報を削除しますか？' } %>

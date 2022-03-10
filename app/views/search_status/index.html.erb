@@ -1,0 +1,15 @@
+<div class="header2">
+<%= link_to '書籍一覧', books_path%>
+<%= link_to '登録(手動)', new_book_path %>
+<%= link_to '登録(自動)', new_isbn_path %>
+<%= link_to '未購入品一覧', search_status_index_path %>
+<%= link_to '発注済み書籍一覧', now_order_index_path %>
+<%= link_to '検索', searches_path %>
+</div>
+
+
+<h1>未購入品一覧</h1>
+
+<%= render 'books/table', books: @books %>
+<br>
+<h2><%= link_to '担当者に購入希望書籍リストを送信', state_to_ordered_path, method: :put %></h2>
